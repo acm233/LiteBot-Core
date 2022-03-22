@@ -1,0 +1,33 @@
+{
+  "name": "litebot",
+  "version": "3.0.0",
+  "description": "A Powerful Linkage for Minecraft and QQ",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/litebot/litebot_core.git"
+  },
+  "author": "Asurin219",
+  "license": "ISC",
+  "dependencies": {
+    "@log4js-node/log4js-api": "^1.0.2",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.0",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-router": "^10.1.1",
+    "log4js": "^6.4.3",
+    "oicq": "^2.2.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "uuid": "^8.3.2",
+    "websocket": "^1.0.34",
+    "yaml": "^1.10.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
