@@ -1,20 +1,20 @@
 "use strict"
-
-const _ver = '3.0.0',
+const fs = require('fs')
+const _ver = JSON.parse(fs.readFileSync('./package.json','utf-8'))['version'],
     _year = new Date().getFullYear();
 
 console.log(`\n ========================================\n  LiteBot ${_ver}\n  Powered by OICQ\n  ©${_year} Asurin219 All rights reserved.\n ========================================\n`)
 
 global.LB = {}
 
-require('./config_loader')
-require('./cli')
-require('./logger')
-require('./oicq')
-require('./network_request')
-require('./encrypt')
-require('./websocket')
-require('./bdsws')
+require('./modules/config_loader')
+require('./modules/cli')
+require('./modules/logger')
+require('./modules/oicq')
+require('./modules/network_request')
+require('./modules/encrypt')
+require('./modules/websocket')
+require('./modules/bdsws')
 
 
 process.on('unhandledRejection', function (err) {
