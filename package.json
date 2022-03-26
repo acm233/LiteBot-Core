@@ -1,5 +1,5 @@
 {
-  "name": "litebot",
+  "name": "litebot-core",
   "version": "3.0.0",
   "description": "A Powerful Linkage for Minecraft and QQ",
   "main": "app.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/litebot/litebot_core.git"
+    "url": "https://gitee.com/litebot/litebot-core.git"
   },
   "author": "Asurin219",
   "license": "ISC",
