@@ -1,6 +1,6 @@
 "use strict"
 const log = new LB.log('websocket_loader')
-const cfg = LB.cfg.global().websocket_server
+const cfg = LB.CFG.global().websocket_server
 const {md5_encrypt} = require('../utils/encryptor')
 
 
@@ -11,5 +11,6 @@ for (let n in cfg) {
         k = md5_encrypt(cfg[n].wspasswd).toUpperCase().substring(0, 16),
         iv = md5_encrypt(cfg[n].wspasswd).toUpperCase().substring(16, 32),
         i = cfg[n].reconnect_interval
-    LB.servers[n] = new LB.WSInstance(n, url, k, iv, i)
+    //log.debug(`${n} , ${url} , ${k} , ${iv} , ${i}`)
+    LB.WS.servers[n] = new LB.WS.instance(n, url, k, iv, i)
 }

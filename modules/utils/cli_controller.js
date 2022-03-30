@@ -33,7 +33,7 @@ function term_cli(comm) {
 rl.on('line', (i) => {
     term_cli(i)
 }).on('close', async () => {
-        await LB.logout()
+        await LB.OICQ.logout()
         await log.mark('正在退出程序...')
         process.exit(0)
     }

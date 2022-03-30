@@ -1,7 +1,8 @@
 'use strict'
 const {createClient} = require('oicq')
-const cfg = LB.cfg.global()['qq_account']
+const cfg = LB.CFG.global()['qq_account']
 const log = new LB.log('OICQ')
+
 
 //OICQ特定配置
 const options = {
@@ -35,11 +36,11 @@ client.on('system.login.qrcode', function () {
 
 
 client.on('message.group', e => {           //群消息事件
-    LB.group.onMessage(e)
+    LB.OICQ.Listeners.onGroupMessage(e)
 }).on('notice.group.increase', e => {       //群成员增加事件
-    LB.group.onMemberIncrease(e)
+    LB.OICQ.Listeners.onGroupMemberIncrease(e)
 }).on('notice.group.decrease', e => {       //群成员减少事件
-    LB.group.onMemberDecrease(e)
+    LB.OICQ.Listeners.onGroupMemberDecrease(e)
 })
 
 
@@ -48,7 +49,7 @@ client.on('message.group', e => {           //群消息事件
  * @param groupID   群号
  * @param msg   消息内容
  */
-LB.send_message = (groupID, msg) => {     //发送群消息
+LB.Groups.sendMsg = (groupID, msg) => {     //发送群消息
     if (!client.isOnline()) {
         log.warn('已阻止调用API：QQ未登录');
         return
@@ -57,6 +58,6 @@ LB.send_message = (groupID, msg) => {     //发送群消息
 }
 
 //退出QQ登录
-LB.logout = async () => {
+LB.OICQ.logout = async () => {
     await client.logout()
 }

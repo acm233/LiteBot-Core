@@ -3,7 +3,7 @@ const path = require('path')
 const yaml = require('yaml')
 const folder = './config/'
 
-LB.cfg = {read, write, global, regex, lang}
+LB.CFG = {read, write, global, regex, lang}
 
 /**
  * 读取配置文件

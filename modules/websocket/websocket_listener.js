@@ -1,6 +1,6 @@
 const log = new LB.log('websocket_listener')
 const {aes_decrypt} = require('../utils/encryptor')
-const groups = LB.cfg.global()['qq_group']
+const groups = LB.CFG.global()['qq_group']
 
 const {gameEvent} = require('../utils/lang_helper')
 
@@ -10,7 +10,7 @@ const {gameEvent} = require('../utils/lang_helper')
  * @param str           数据包内容（加密后的字符串）
  */
 function ws_converter(server_name, str) {
-    let servers = LB.servers[server_name],
+    let servers = LB.WS.servers[server_name],
         pack_type = JSON.parse(str).type
 
     if (pack_type == "encrypted") { //接收到已加密的数据包
@@ -59,7 +59,7 @@ function ws_receiver(srv, str) {
             break
 
         case "runcmdfeedback":
-            LB.send_message(LB.group.src, gameEvent('runcmd_feedback', srv, result))
+            LB.Groups.sendMsg(LB.Groups.src, gameEvent('runcmd_feedback', srv, result))
             break
 
         case "mobdie":
@@ -75,21 +75,23 @@ function ws_receiver(srv, str) {
 /**
  * 广播消息到所有群聊
  * @param server_name   服务器名称
- * @param msg           消息内容
+ * @param player        玩家昵称（XboxID）
+ * @param text          消息文本（服->群）
+ * @param raw_text      消息文本（服<->服）
  */
 function sendGroupMsg(server_name, player, text, raw_text) {
     for (g in groups) {     //遍历所有群聊
         groups[g].bind_server.forEach(s => {    //遍历每个群聊中绑定的服务器
             if (groups[g].enable_chat_forward) {
                 if (server_name == s) {    //遍历得到的服务器名=本服务器
-                    LB.send_message(g, text)    //转发消息到该群
+                    LB.Groups.sendMsg(g, text)    //转发消息到该群
                 } else if (groups[g].bind_server.some((val) => val === server_name)) {
                     //遍历得到的服务器名!=本服，则判断该服是否和本服在同一群组
-                    LB.servers[s].sendText(gameEvent('chat_between_server', player, server_name, raw_text))
+                    LB.WS.servers[s].sendText(gameEvent('chat_between_server', player, server_name, raw_text))
                 }
             }
         })
     }
 }
 
-LB.wslisteners.push(ws_converter)
+LB.WS.listeners.push(ws_converter)

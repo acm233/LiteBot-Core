@@ -1,4 +1,4 @@
-const cfg = LB.cfg.lang()
+const cfg = LB.CFG.lang()
 
 String.prototype.format = function () { //文本格式化
     if (arguments.length === 0) return this;

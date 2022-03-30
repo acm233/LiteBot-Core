@@ -1,8 +1,8 @@
 const log = new LB.log('group_helper')
-const groups = LB.cfg.global()['qq_group']
+const groups = LB.CFG.global()['qq_group']
 const {groupEvent} = require('../utils/lang_helper')
 
-LB.group.message_helper = (e, cfg) => {
+LB.Groups.message_helper = (e, cfg) => {
     /*
     cfg.enable_allowlist_helper
     cfg.enable_die_event_forward
@@ -13,7 +13,7 @@ LB.group.message_helper = (e, cfg) => {
         qq = e.user_id,
         msg = e.raw_message,
         isAdmin = cfg.admin.some((val) => val === qq),   //判断发信人是否为bot管理员，返回Boolean
-        rgx = LB.group.regex(msg)
+        rgx = LB.Groups.regex(msg)
 
     //未匹配到正则，且聊天转发启用时，将群消息转发到服务器，并返回
     if (rgx == undefined && cfg.enable_chat_forward) {
@@ -109,7 +109,7 @@ LB.group.message_helper = (e, cfg) => {
 
 /**
  * 获取艾特的目标
- * @param e 消息链
+ * @param e 群消息事件对象
  * @return {*[]} 包含1个或多个QQ的数组
  */
 function getAtQQ(e) {
@@ -129,9 +129,9 @@ function getAtQQ(e) {
  * @param msg       WebSocket消息内容
  */
 function sendWsMsg(groupid, type, msg) {
-    LB.group.src = groupid
+    LB.Groups.src = groupid
     groups[groupid].bind_server.forEach(s => {
-        LB.servers[s][type](msg)
+        LB.WS.servers[s][type](msg)
     })
 }
 
@@ -144,6 +144,6 @@ function sendWsMsg(groupid, type, msg) {
  */
 function allowlistHelper(operation, groupid, tips, ...args) {
     groups[groupid].bind_server.forEach((s) => {
-        LB.playersDB[operation](groupid, tips, s, ...args)
+        LB.PlayersDB[operation](groupid, tips, s, ...args)
     })
 }

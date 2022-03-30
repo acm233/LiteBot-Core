@@ -2,7 +2,7 @@ const WSClient = require('websocket').client;
 const {runcmd, sendtext} = require('./pack_encryptor')
 const log = new LB.log('WebSocket')
 
-LB.WSInstance = class {
+LB.WS.instance = class {
     /**
      * 初始化WebSocket客户端实例
      * @param name  WS连接名称
@@ -31,7 +31,7 @@ LB.WSInstance = class {
                 //setTimeout(() => this.client.connect(this.url), r * 1000)
             });
             con.on('message', (m) => {
-                LB.wslisteners.forEach(ws => {
+                LB.WS.listeners.forEach(ws => {
                     try {
                         //监听来自各WebSocket服务器的消息
                         ws(this.name, m.utf8Data);

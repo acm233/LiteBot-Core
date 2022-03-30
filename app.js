@@ -6,18 +6,25 @@ const _ver = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))['version'],
 console.log(`\n ========================================\n  LiteBot ${_ver}\n  Powered by OICQ\n  ©${_year} Asurin219 All rights reserved.\n ========================================\n`)
 
 global.LB = {}
-LB.group = {}
-LB.servers = []
-LB.wslisteners = []
+LB.UTILS = {}
+LB.OICQ = {
+    Listeners: {}
+}
+LB.Groups = {}
+LB.WS = {
+    servers: [],
+    listeners: []
+}
+LB.PlayersDB = {}
 
 require('./modules/utils/logger')
 require('./modules/utils/config_loader')
 require('./modules/utils/cli_controller')
 require('./modules/utils/lang_helper')
+require('./modules/groups/group_event_listener')
 require('./modules/groups/oicq_loader')
 require('./modules/groups/regex')
-require('./modules/groups/group_listener')
-require('./modules/groups/group_helper')
+require('./modules/groups/group_message_helper')
 //require('./modules/utils/network_request')
 require('./modules/utils/encryptor')
 require('./modules/websocket/websocket_helper')
