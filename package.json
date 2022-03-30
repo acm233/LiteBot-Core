@@ -4,7 +4,7 @@
   "description": "A Powerful Linkage for Minecraft and QQ",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,5 @@
     "websocket": "^1.0.34",
     "yaml": "^1.10.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  }
+  "devDependencies": {}
 }
