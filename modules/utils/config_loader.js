@@ -3,7 +3,7 @@ const path = require('path')
 const yaml = require('yaml')
 const folder = './config/'
 
-LB.cfg = {read, write, global, bds}
+LB.cfg = {read, write, global, regex, lang}
 
 /**
  * 读取配置文件
@@ -37,7 +37,13 @@ function global() {
     return read('global_config.yml')
 }
 
-//加载BDS连接配置
-function bds() {
-    return read('bds_list.json')
+//加载正则表达式配置
+function regex() {
+    return read('regex.json')
+}
+
+//加载语言配置
+function lang() {
+    let language = global().language
+    return read(`language/${language}.json`)
 }

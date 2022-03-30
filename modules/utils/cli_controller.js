@@ -3,9 +3,10 @@ const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: 'mqfox>'
+    prompt: 'LiteBot>'
 })
 
+const log = new LB.log()
 LB.cmd = {}
 
 /**
@@ -23,7 +24,7 @@ function term_cli(comm) {
             break;
 
         default:
-            LB.log.error(`未知的指令：${comm}。检查输入是否正确`)
+            log.error(`未知的指令：${comm}。检查输入是否正确`)
             rl.prompt()
             break;
     }
@@ -31,9 +32,9 @@ function term_cli(comm) {
 
 rl.on('line', (i) => {
     term_cli(i)
-}).on('close', () => {
-        LB.logout()
-        LB.log.mark('正在退出程序...')
-        setTimeout(() => process.exit(0), 1000)
+}).on('close', async () => {
+        await LB.logout()
+        await log.mark('正在退出程序...')
+        process.exit(0)
     }
 )

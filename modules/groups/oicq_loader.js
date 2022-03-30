@@ -1,26 +1,27 @@
 'use strict'
 const {createClient} = require('oicq')
 const cfg = LB.cfg.global()['qq_account']
+const log = new LB.log('OICQ')
 
-//OICQ内部配置
+//OICQ特定配置
 const options = {
-    platform: cfg['platform'],  //登录平台
+    platform: cfg['platform'],  //登录平台选择
     kickoff: true,              //下线后自动重登录
-    log_level: 'warn',          //日志等级
+    log_level: 'warn',          //仅输出等级为warn的日志
     brief: true                 //格式化群消息中的表情和图片
 }
 
+const client = createClient(cfg['uin'], options)    //创建一个QQ客户端实例
 
-const client = createClient(cfg['uin'], options)
-client.on('system.online', () => LB.log.info('登录成功，开始处理消息'));
+client.on('system.online', () => log.info('登录成功，开始处理消息'));
 
 client.on('system.login.qrcode', function () {
-    LB.log.error("扫码完成后请按回车进行登录")
+    log.error("扫码完成后请按回车进行登录")
     process.stdin.once('data', () => {
         this.login()
     })
 }).on("system.login.slider", function (e) {
-    LB.log.error("输入ticket后请按回车进行登录")
+    log.error("输入ticket后请按回车进行登录")
     process.stdin.once("data", (input) => {
         this.sliderLogin(input)
     });
@@ -33,23 +34,29 @@ client.on('system.login.qrcode', function () {
 }).login(cfg['password']);
 
 
-client.on('message.group', (e) => {
-    //LB.log.debug(e, 'event:message.group')
+client.on('message.group', e => {           //群消息事件
+    LB.group.onMessage(e)
+}).on('notice.group.increase', e => {       //群成员增加事件
+    LB.group.onMemberIncrease(e)
+}).on('notice.group.decrease', e => {       //群成员减少事件
+    LB.group.onMemberDecrease(e)
 })
+
+
 /**
  * 发送群消息
  * @param groupID   群号
  * @param msg   消息内容
  */
-LB.SendGroupMessage = (groupID, msg) => {     //发送群消息
+LB.send_message = (groupID, msg) => {     //发送群消息
     if (!client.isOnline()) {
-        LB.log.warn('已阻止调用API：QQ未登录');
+        log.warn('已阻止调用API：QQ未登录');
         return
     }
     client.sendGroupMsg(groupID, msg)
 }
 
 //退出QQ登录
-LB.logout = () => {
-    client.logout()
+LB.logout = async () => {
+    await client.logout()
 }
