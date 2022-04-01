@@ -16,6 +16,7 @@ LB.WS = {
     listeners: []
 }
 LB.PlayersDB = {}
+LB.PluginMgr = {};
 
 require('./modules/utils/logger')
 require('./modules/utils/config_loader')
@@ -31,8 +32,9 @@ require('./modules/websocket/websocket_helper')
 require('./modules/websocket/websocket_loader')
 require('./modules/websocket/websocket_listener')
 require('./modules/utils/players_db')
+require('./modules/loader/plugin_loader');
 
-const log = new LB.log()
+const log = new LB.log();
 
 process.on('unhandledRejection', function (err) {
     log.warn('出现异常：' + err.message)
