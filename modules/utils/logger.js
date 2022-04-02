@@ -1,4 +1,5 @@
 const log4js = require('@log4js-node/log4js-api')
+require('log4js-json-layout2')
 
 function log_output(level, text, module) {
     let logger = log4js.getLogger(`[${module}]`);
@@ -20,6 +21,7 @@ LB.log = class {
     }
 
     debug() {
+        if(!LB.CFG.global().debug_mode) return
         log_output('debug', Object.values(arguments).join(this.Text), this.module)
     }
 
