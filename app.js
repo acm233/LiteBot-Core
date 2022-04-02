@@ -6,7 +6,7 @@ require('./modules/utils/config_loader')
 
 const log = new LB.log()
 if(!LB.fs.isExists('./config')){
-    log.info('配置文件不存在！请将./modules/examples文件夹复制到根目录，并重命名为config')
+    log.error('未找到相关配置文件。请将压缩包内的config文件夹解压到LiteBot根目录')
     log.info('修改配置文件后，再启动LiteBot')
     process.exit(0)
 }
