@@ -1,6 +1,6 @@
 # LiteBot 简介
 
-**LiteBot** 是一个基于Node.js平台、[OICQ](https://github.com/takayama-lily/oicq)框架进行开发的群服互通机器人，提供QQ与BDS进行联动
+**LiteBot** 是一个基于Node.js平台、[OICQ](https://github.com/takayama-lily/oicq)框架进行开发的基岩版群服互通机器人。
 
 LiteBot目前支持的WebSocket组件为：
 
@@ -34,7 +34,9 @@ WebSocket组件|组件类型|依赖平台|作者
 2. 将压缩包内的所有文件解压到相同目录。打开``config/global_config.yml``配置文件，按照文件内的提示进行修改：
 3. 修改完成后,保存并退出，启动LiteBot。以下是针对不同平台提供的LiteBot启动方法
 > Windows用户：双击运行LiteBot.exe
+> 
 > Linux用户：在LiteBot打开终端，输入./LiteBot
+> 
 > Mac用户：
 4. 当控制台输出以下类似的内容，且无任何报错时，说明LiteBot已经就绪：
 
@@ -94,6 +96,7 @@ LiteBot可以通过正则表达式模块对群消息进行特定处理。当群�
 ```
 
 以下是正则表达式目前支持的配置项：
+
 regex（正则表达式）|type（动作类型）|content（内容）|说明
 --|--|--|--
 "^(帮助)$"|group_msg|"帮助测试"|发送一条自定义内容的群消息"帮助测试"
