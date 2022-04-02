@@ -3,8 +3,8 @@ const sqlite3 = require('sqlite3').verbose();
 const dbPath = './config/players_data.db'
 const db = new sqlite3.Database(dbPath)
 
-const servers = LB.CFG.global()['websocket_server']
-const groups = LB.CFG.global()['qq_group']
+const servers = LB.fs.readFrom('./config/global_config.yml')['websocket_server']
+const groups = LB.fs.readFrom('./config/global_config.yml')['qq_group']
 const {allowlistEvent} = require('./lang_helper')
 const log = new LB.log('PlayersDB')
 
@@ -153,6 +153,7 @@ LB.PlayersDB.getBindInfo = async (groupid, tips, qq) => {
     let select_sql = `SELECT P.QQ_ID, P.Xbox_ID, S.Server_Name FROM PLAYERS P LEFT JOIN ALLOWLIST_DATA A LEFT JOIN SERVERS S ON A.Player_ID = P.ID AND A.Server_ID = S.ID WHERE P.QQ_ID = '${qq}'`
 
     await db_all(select_sql, (res) => {
+        log.debug(`\n绑定信息：\n${JSON.stringify(res,null,'\t')}`)
         if (res[0] == undefined) {
             LB.Groups.sendMsg(groupid, allowlistEvent(tips, qq))   //主表（玩家表）无记录，未绑定
             return

@@ -1,6 +1,6 @@
-const log = new LB.log('websocket_listener')
+const log = new LB.log('Websocket_Listener')
 const {aes_decrypt} = require('../utils/encryptor')
-const groups = LB.CFG.global()['qq_group']
+const groups = LB.fs.readFrom('./config/global_config.yml')['qq_group']
 
 const {gameEvent} = require('../utils/lang_helper')
 

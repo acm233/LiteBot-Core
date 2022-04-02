@@ -1,4 +1,5 @@
-const cfg = LB.CFG.lang()
+const language = LB.fs.readFrom('./config/global_config.yml')['language']
+const cfg = LB.fs.readFrom(`./config/language/${language}.json`)
 
 String.prototype.format = function () { //文本格式化
     if (arguments.length === 0) return this;

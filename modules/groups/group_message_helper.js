@@ -1,5 +1,5 @@
 const log = new LB.log('Message_Helper')
-const groups = LB.CFG.global()['qq_group']
+const groups = LB.fs.readFrom('./config/global_config.yml')['qq_group']
 const {groupEvent} = require('../utils/lang_helper')
 
 LB.Groups.message_helper = (e, cfg) => {

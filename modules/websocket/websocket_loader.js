@@ -1,6 +1,6 @@
 "use strict"
-const log = new LB.log('websocket_loader')
-const cfg = LB.CFG.global().websocket_server
+const log = new LB.log('Websocket_Loader')
+const cfg = LB.fs.readFrom('./config/global_config.yml')['websocket_server']
 const {md5_encrypt} = require('../utils/encryptor')
 
 

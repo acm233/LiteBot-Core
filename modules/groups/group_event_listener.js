@@ -1,5 +1,5 @@
 const log = new LB.log('group_listener')
-const cfg = LB.CFG.global()['qq_group']
+const cfg = LB.fs.readFrom('./config/global_config.yml')['qq_group']
 
 /**
  * 监听群消息事件

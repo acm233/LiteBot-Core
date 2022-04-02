@@ -1,49 +1,41 @@
 const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
-const folder = './config/'
 
-LB.CFG = {read, write, global, regex, lang}
+LB.fs = {readFrom, writeTo, isExists}
+
 
 /**
  * 读取配置文件
- * @param filename 完整文件名
+ * @param p 配置文件相对路径
  * @return string
  * */
-function read(filename) {
-    let p = `${folder}${filename}`
-    if (path.extname(filename) === '.yml') {
+function readFrom(p) {
+    if (path.extname(p) === '.yml') {
         return yaml.parse(fs.readFileSync(p, 'utf-8'))
-    } else if (path.extname(filename) === '.json') {
+    } else if (path.extname(p) === '.json') {
         return JSON.parse(fs.readFileSync(p, 'utf-8'))
     }
 }
 
 /**
  * 写入配置文件
- * @param obj 待转换的对象
+ * @param p     配置文件相对路径
+ * @param obj   待转换的对象
  * */
-function write(obj) {
-    let p = `${folder}${obj}`
-    if (path.extname(obj) === '.yml') {
+function writeTo(p, obj) {
+    if (path.extname(p) === '.yml') {
         fs.writeFileSync(p, yaml.stringify(obj))
-    } else if (path.extname(obj) === '.json') {
+    } else if (path.extname(p) === '.json') {
         fs.writeFileSync(p, JSON.stringify(obj, null, '\t'))
     }
 }
 
-//加载全局配置
-function global() {
-    return read('global_config.yml')
-}
-
-//加载正则表达式配置
-function regex() {
-    return read('regex.json')
-}
-
-//加载语言配置
-function lang() {
-    let language = global().language
-    return read(`language/${language}.json`)
+/**
+ * 判断配置文件是否存在
+ * @param p 配置文件相对路径
+ * @return {boolean}
+ */
+function isExists(p){
+    return fs.existsSync(p)
 }
