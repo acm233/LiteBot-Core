@@ -18,10 +18,10 @@ String.prototype.format = function () { //文本格式化
 
 class lang_helper {
     allowlistEvent(e, ...args) {
-        if (e == "member_already_binded_by_others") {
+        if (e == "xboxid_already_binded_by_others") {
             return cfg[e].format({
                 xboxid: args[0],
-                member_qqid: args[1]
+                others_qqid: args[1]
             })
         } else if (e == "get_bind_info") {
             return cfg[e].format({
@@ -29,11 +29,6 @@ class lang_helper {
                 xboxid: args[1],
                 permission: args[2],
                 bind_status: args[3]
-            })
-        } else if (e == "member_left_with_bind") {
-            return cfg[e].format({
-                member_qqid: args[0],
-                xboxid: args[1]
             })
         } else {
             return cfg[e].format({
