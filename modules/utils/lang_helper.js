@@ -19,9 +19,8 @@ class lang_helper {
     allowlistEvent(e, ...args) {
         if (e == "member_already_binded_by_others") {
             return cfg[e].format({
-                server_name: args[0],
-                xboxid: args[1],
-                member_qqid: args[2]
+                xboxid: args[0],
+                member_qqid: args[1]
             })
         } else if (e == "get_bind_info") {
             return cfg[e].format({
@@ -37,9 +36,8 @@ class lang_helper {
             })
         } else {
             return cfg[e].format({
-                server_name: args[0],
-                member_qqid: args[1],
-                xboxid: args[2]
+                member_qqid: args[0],
+                xboxid: args[1]
             })
         }
     }
