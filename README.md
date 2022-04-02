@@ -32,12 +32,7 @@ WebSocket组件|组件类型|依赖平台|作者
 ## 第一次使用LiteBot
 1. 下载LiteBot；
 2. 将压缩包内的所有文件解压到相同目录。打开``config/global_config.yml``配置文件，按照文件内的提示进行修改：
-3. 修改完成后,保存并退出，启动LiteBot。以下是针对不同平台提供的LiteBot启动方法
-> Windows用户：双击运行LiteBot.exe
-> 
-> Linux用户：在LiteBot打开终端，输入./LiteBot
-> 
-> Mac用户：
+3. 修改完成后,保存并退出。在当前目录打开终端，输入``node app.js``启动LiteBot;
 4. 当控制台输出以下类似的内容，且无任何报错时，说明LiteBot已经就绪：
 
 ```
