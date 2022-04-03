@@ -30,10 +30,19 @@ WebSocket组件|组件类型|依赖平台|作者
 3、开服，然后开始配置LiteBot
 
 ## 第一次使用LiteBot
+### 对于Windows用户
 1. 下载LiteBot；
-2. 将压缩包内的所有文件解压到相同目录。打开``config/global_config.yml``配置文件，按照文件内的提示进行修改：
-3. 修改完成后,保存并退出。在当前目录打开终端，输入``node app.js``启动LiteBot;
-4. 当控制台输出以下类似的内容，且无任何报错时，说明LiteBot已经就绪：
+2. 将压缩包内的所有文件解压，进入解压后的文件夹，复制examples文件夹并重命名为config；
+3. 打开LiteBot全局配置文件``./config/global_config.yml``，按照文件内的提示进行修改；
+4. 修改完成后,保存并退出。在当前目录打开终端，输入``node app.js``启动LiteBot
+
+### 对于Linux用户
+1. 在终端输入``wget -qO- https://gitee.com/litebot/litebot-scripts/raw/master/init.sh | bash``，执行快速初始化；
+2. 初始化完成后，进入LiteBot根目录（位置：``/opt/LiteBot``）；
+3. 打开LiteBot全局配置文件``./config/global_config.yml``，按照文件内的提示进行修改；
+4. 修改完成后,保存并退出。在当前目录打开终端，输入``node app.js``启动LiteBot
+
+* 当控制台出现以下类似的内容时，说明LiteBot已经可以正常使用：
 
 ```
 
