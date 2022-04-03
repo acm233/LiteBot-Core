@@ -122,7 +122,7 @@ LB.PlayersDB.addAllowlist = async (groupid, tips, bind_servers, qq) => {
                     log.error(err)
                     return
                 }
-                LB.WS.servers[i].runCMD(`allowlist add ${xboxid}`)
+                LB.WS.servers[i].runCMD(`allowlist add "${xboxid}"`)
                 update_sql += `INSERT INTO ALLOWLIST_DATA(Server_ID,Player_ID) SELECT S.ID,P.ID FROM SERVERS S INNER JOIN PLAYERS P ON S.Server_Name='${i}' AND P.QQ_ID = '${qq}';`
             })
 
@@ -203,7 +203,7 @@ LB.PlayersDB.unbindXboxID = async (groupid, tips, bind_servers, qq) => {
                 log.error(err)
                 return
             }
-            LB.WS.servers[i].runCMD(`allowlist remove ${res[0].Xbox_ID}`)
+            LB.WS.servers[i].runCMD(`allowlist remove "${res[0].Xbox_ID}"`)
         })
 
         let delete_sql = `PRAGMA foreign_keys = ON;DELETE FROM PLAYERS WHERE QQ_ID='${qq}'`
