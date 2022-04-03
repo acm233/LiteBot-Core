@@ -4,5 +4,5 @@ node_modules/
 config/
 data/
 bak/
-.exe
-.zip
+*.exe
+*.zip
