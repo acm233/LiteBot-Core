@@ -1,7 +1,7 @@
 const log = new LB.log("PluginLoader");
 const fs = require("fs");
 const { dirname } = require("path");
-const LoaderDir = ".\\plugins";
+const LoaderDir = "./plugins";
 const path = require('path');
 
 LB.PluginMgr = { Load };
@@ -28,7 +28,7 @@ function Load(patha) {
 function load() {
     let dir = fs.readdirSync(LoaderDir, { "encoding": "utf8" }), count = 0;
     dir.forEach((val, i) => {
-        let fullPath = `${LoaderDir}\\${val}`;
+        let fullPath = `${LoaderDir}\/${val}`;
         if (Load(fullPath)) {
             log.info(`插件<${fullPath}>加载成功!`);
             count++;
