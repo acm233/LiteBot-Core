@@ -25,10 +25,9 @@ LB.PluginMgr = {}
 
 require('./modules/utils/cli_controller')
 require('./modules/utils/lang_helper')
-require('./modules/groups/group_event_listener')
 require('./modules/groups/oicq_loader')
 require('./modules/groups/regex')
-require('./modules/groups/group_message_helper')
+require('./modules/groups/group_message_listener')
 require('./modules/utils/encryptor')
 require('./modules/websocket/websocket_helper')
 require('./modules/websocket/websocket_loader')
