@@ -8,7 +8,7 @@ LB.PluginMgr = { Load };
 function Load(patha) {
     let P = path.join(path.dirname(path.dirname(__dirname)), patha);
     if (!LB.fs.isExists(P)){
-        log.error(`未能找到文件<${P}>!`);
+        log.error(`未能找到文件 <${P}> !`);
         return false;
     }
     try {
