@@ -34,15 +34,16 @@ client.on('system.login.qrcode', function () {
     if (e.code < 0) this.login()
 }).login(cfg['password']);
 
-
-client.on('message.group', e => {           //群消息事件
-    LB.OICQ.Listeners.onGroupMessage(e)
-}).on('notice.group.increase', e => {       //群成员增加事件
-    LB.OICQ.Listeners.onGroupMemberIncrease(e)
-}).on('notice.group.decrease', e => {       //群成员减少事件
-    LB.OICQ.Listeners.onGroupMemberDecrease(e)
-})
-
+/**
+ * 全局OICQ事件监听器
+ * @param event     事件类型
+ * @param callback  事件回调
+ */
+LB.OICQ.onEvent = (event,callback)=>{
+    client.on(event,(e)=>{
+        callback(e)
+    })
+}
 
 /**
  * 发送群消息
