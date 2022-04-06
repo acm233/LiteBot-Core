@@ -109,6 +109,7 @@ LB.PlayersDB.addAllowlist = async (groupid, tips, bind_servers, qq) => {
 
     let sql1 = `SELECT P.QQ_ID, P.Xbox_ID, S.Server_Name FROM PLAYERS P,ALLOWLIST_DATA A,SERVERS S WHERE A.Player_ID = P.ID AND A.Server_ID = S.ID AND P.QQ_ID='${qq}'`
     await db_all(sql1, (res) => {
+        if (xboxid == undefined) return
         if (res[0] == undefined) {
             let update_sql = ''
 
@@ -159,7 +160,7 @@ LB.PlayersDB.getBindInfo = async (groupid, tips, qq) => {
     await db_all(sql1, (res) => {
         log.debug(`\n白名单信息：\n${JSON.stringify(res, null, '\t')}`)
         if (res[0] == undefined) {
-            if(xboxid == undefined) return
+            if (xboxid == undefined) return
             binded.push("没有记录")
         } else {
             for (let i in res) {
