@@ -4,7 +4,7 @@
   ####            ####
   ####          ####
   ####        ####
-  ####      ####             LiteBot {_version} Preview 1
+  ####      ####             LiteBot {_version} Preview 2
   ####    ####               Powered by OICQ
   ####      ####             ©{_copyright_year} Asurin219 All rights reserved.
   ####        ####
