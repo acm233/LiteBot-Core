@@ -4,7 +4,7 @@ const {groupEvent} = require('../utils/lang_helper')
 
 //监听群消息
 LB.OICQ.onEvent('message.group',(e,g)=>{
-    message_helper(e, g)
+    message_helper(e, groups[g])
 })
 
 /**
