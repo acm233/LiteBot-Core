@@ -13,7 +13,8 @@ LB.OICQ.onEvent('message.group',(e,g)=>{
  * @param cfg   群配置对象
  */
 function message_helper (e, cfg) {
-    let group_id = e.group_id,
+    let uname = e.sender.card,
+        group_id = e.group_id,
         group_name = e.group_name,
         qq = e.user_id,
         msg = e.raw_message,
@@ -22,10 +23,15 @@ function message_helper (e, cfg) {
         func1 = cfg.enable_allowlist_helper,    //群功能2：白名单助手
         rgx = LB.Groups.regex(msg)
 
+    if(uname == ''){
+        uname = e.nickname
+    }
+
+
     //未匹配到正则，且聊天转发启用时，将群消息转发到服务器，并返回
     if (rgx == undefined && func0) {
         //此处应根据玩家是否绑定xboxid，决定websocket消息中显示的玩家标识
-        sendWsMsg(e.group_id, 'sendText', groupEvent('chat_to_server', group_name, qq, msg))
+        sendWsMsg(e.group_id, 'sendText', groupEvent('chat_to_server', group_name, uname, msg))
         return
     }
 
