@@ -12,9 +12,7 @@ if(!LB.conf.isExists('./config')){
 }
 
 LB.UTILS = {}
-LB.OICQ = {
-    Listeners: {}
-}
+LB.OICQ = {}
 LB.Groups = {}
 LB.WS = {
     servers: [],
