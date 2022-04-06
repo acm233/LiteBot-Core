@@ -21,7 +21,7 @@ LB.log = class {
     }
 
     debug() {
-        if(!LB.conf.isExists('./config/global_config.yml') || !LB.conf.readFrom('./config/global_config.yml')) return
+        if(!LB.conf.isExists('./config/global_config.yml') || !LB.conf.readFrom('./config/global_config.yml').debug_mode) return
         log_output('debug', Object.values(arguments).join(this.Text), this.module)
     }
 
