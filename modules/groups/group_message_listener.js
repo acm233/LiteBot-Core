@@ -3,11 +3,8 @@ const groups = LB.conf.readFrom('./config/global_config.yml')['qq_group']
 const {groupEvent} = require('../utils/lang_helper')
 
 //监听群消息
-LB.OICQ.onEvent('message.group',(e)=>{
-    for (let i in groups) {
-        if (e.group_id != i) continue  //判断发信人所在群聊是否与设定的的群聊匹配
-        message_helper(e, groups[i])
-    }
+LB.OICQ.onEvent('message.group',(e,g)=>{
+    message_helper(e, g)
 })
 
 /**

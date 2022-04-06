@@ -1,6 +1,7 @@
 'use strict'
 const {createClient} = require('oicq')
 const cfg = LB.conf.readFrom('./config/global_config.yml')['qq_account']
+const groups = LB.conf.readFrom('./config/global_config.yml')['qq_group']
 const log = new LB.log('OICQ')
 
 
@@ -41,7 +42,10 @@ client.on('system.login.qrcode', function () {
  */
 LB.OICQ.onEvent = (event,callback)=>{
     client.on(event,(e)=>{
-        callback(e)
+        for (let i in groups) {
+            if (e.group_id != i) continue  //判断发信人所在群聊是否与设定的的群聊匹配
+            callback(e,groups[i])
+        }
     })
 }
 
