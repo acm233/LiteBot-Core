@@ -1,6 +1,6 @@
 'use strict'
 const {createClient} = require('oicq')
-const cfg = LB.fs.readFrom('./config/global_config.yml')['qq_account']
+const cfg = LB.conf.readFrom('./config/global_config.yml')['qq_account']
 const log = new LB.log('OICQ')
 
 

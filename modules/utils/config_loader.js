@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
 
-LB.fs = {readFrom, writeTo, isExists}
+LB.conf = {readFrom, writeTo, isExists}
 
 
 /**

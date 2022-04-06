@@ -3,8 +3,8 @@ const sqlite3 = require('sqlite3').verbose();
 const dbPath = './config/players_data.db'
 const db = new sqlite3.Database(dbPath)
 
-const servers = LB.fs.readFrom('./config/global_config.yml')['websocket_server']
-const groups = LB.fs.readFrom('./config/global_config.yml')['qq_group']
+const servers = LB.conf.readFrom('./config/global_config.yml')['websocket_server']
+const groups = LB.conf.readFrom('./config/global_config.yml')['qq_group']
 const {allowlistEvent} = require('./lang_helper')
 const log = new LB.log('PlayersDB')
 

@@ -1,5 +1,5 @@
 const log = new LB.log('Regex')
-const cfg = LB.fs.readFrom('./config/regex.json')
+const cfg = LB.conf.readFrom('./config/regex.json')
 /**
  * 正则处理函数
  * @param msg   待匹配的消息文本
