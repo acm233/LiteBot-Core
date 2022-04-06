@@ -1,13 +1,18 @@
-const log = new LB.log('Demo Plugins');
+"use strict"
+const log = new LB.log('Demo');
+const {segment} = require("oicq");
 
-log.info("我是Demo");
+LB.OICQ.onEvent('notice.group.increase', (e, groupid) => {
+    let message = [
+        segment.at(e.user_id),
+        "\n欢迎加入LiteBot实验室！",
+        segment.image('./litebot.png')
+    ];
+    LB.Groups.sendMsg(groupid, message)
 
-LB.OICQ.onEvent('notice.group.increase',(e,groupid)=>{
-    log.debug('新人来辣！')
-    console.log(e)
 })
 
-LB.OICQ.onEvent('notice.group.decrease',(e,groupid)=>{
-    log.debug('牙败，有人退群！')
-    console.log(e)
+LB.OICQ.onEvent('notice.group.decrease', (e, groupid) => {
+    let message = `${e.user_id} 离开了群聊`
+    LB.Groups.sendMsg(groupid, message)
 })
