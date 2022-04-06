@@ -44,7 +44,7 @@ LB.OICQ.onEvent = (event,callback)=>{
     client.on(event,(e)=>{
         for (let i in groups) {
             if (e.group_id != i) continue  //判断发信人所在群聊是否与设定的的群聊匹配
-            callback(e,groups[i])
+            callback(e,i)
         }
     })
 }
