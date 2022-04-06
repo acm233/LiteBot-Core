@@ -11,7 +11,6 @@ if(!LB.conf.isExists('./config')){
     process.exit(0)
 }
 
-LB.UTILS = {}
 LB.OICQ = {}
 LB.Groups = {}
 LB.WS = {
