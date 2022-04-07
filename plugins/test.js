@@ -1,3 +1,3 @@
 const log = new LB.log('Test_Plugins');
 
-log.info("test");A
+log.info("test");
